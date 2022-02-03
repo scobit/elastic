@@ -18,7 +18,7 @@ vim /etc/nginx/sites-available/default
 server {
 listen 80;
 
-server_name 192.168.0.221
+#server_name 192.168.0.221
 
 auth_basic "Restricted Access";
 auth_basic_user_file /etc/nginx/htpasswd.users;
