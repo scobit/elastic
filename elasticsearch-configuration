@@ -1,0 +1,18 @@
+# Default path of installation
+vim /etc/elasticsearch/elasticsearch.yml
+
+cluster.name: MyNameOfCluster
+node.name: node-1
+network.host: MyIp
+
+index.number_of_shards: 5
+index.number_of_repcilas: 0
+discovery.zen.ping.unicast.hosts: ["ip","ip"]
+discovery.zen.ping.multicast.enabled: false
+
+
+on the second host the same configuration, except network.host
+
+restart nodes
+
+
