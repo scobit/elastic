@@ -8,14 +8,6 @@ sense for chrome extension
 #########################################
 
 
-licence.info 
-
-
-
-
-
-
-
 
 GET _search
 {
@@ -57,8 +49,6 @@ PUT blogs/post/2
 }
 
 also you can check result in HEAD plugin
-
-shard - how data devided between multipant nodes
 
 if we want to make auto id, we should use POST
 
@@ -409,30 +399,7 @@ Custom patterns can be added
 
 
 
-filter mutate
 
-
-filter sleep
-
-
-
-filter translate
-
-output csv
-
-output file
-
-output stdout
-
-output elasticsearch
-
-output email
-
-output s3
-
-output tcp
-
-output udp
 
 cd /opt/logstash/bin
 vim sample_1.conf
@@ -735,66 +702,21 @@ It has the capability to screen? breakdown and make string alternations in the d
 After collecting and filterind data send to es for storage
 
 
-
-kibana - provides a graphical user interface
-GUI to display tha data waht was collected and stored is es.
-features:
- - discover the data
- - analyze the data by applying different metrics
- - visualize the data
- apply machine learning on the data tj get data anomaly
- - manage users and roles
- a console to run es expressions
- play with time-series data using timeline
- monitor es stack using monitoring
- 
- es supports email notifications
  
 
-System perfomance monitoring
-log management
-applications perfomance monitoring
 
 
-application data nalysis
-
-secutiry monitoring and alerting
-
-data visualization
-
-
-
-
-beats - multiple light weight data collectors
-отличие от logstash в том, что биты не обрабатывают полученнкю информацию,
- 
  
 apt-get -y install  openjdk-8-jdk
-
-
-
-
-
-
 
 wget https://*.deb
 dpkg -i *.deb
 
 
-
-
-
- 
- 
-
 sudo apt install net-tools
 
 
-
-
 sudo snap install postman
-
-
 
 
 curl -i http://localhost:5601
@@ -862,14 +784,6 @@ index => "crimes"
 }
 }
 
-
-
-
-beat более лёгкий и автоматизированный по сравнению с логстэш
-
-
-
-real time logs
 
 sudo filebeat modules list
 
