@@ -42,8 +42,10 @@ sudo /bin/systemctl daemon-reload
 sudo /bin/systemctl enable elasticsearch.service
 
 # Elasticsearch can be started and stopped as follows:
+# instead of using elasticsearch.service we can use elasticsearch
 sudo systemctl start elasticsearch.service
 sudo systemctl stop elasticsearch.service
+sudo systemctl status elasticsearch.service
 
 # To tail the journal:
 sudo journalctl -f
