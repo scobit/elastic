@@ -1,6 +1,6 @@
 # dowload apache sample logs data
 sudo wget https://logz.io/sample-data
-mv cp sample-data apache.log
+mv sample-data apache.log
 
 # creating pipeline
 vim /etc/logstash/conf.d/apachelog.conf
