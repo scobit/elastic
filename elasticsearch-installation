@@ -41,6 +41,7 @@ sudo /bin/systemctl enable elasticsearch.service
 # instead of using elasticsearch.service we can use elasticsearch
 sudo systemctl start|stop|restart|status elasticsearch.service
 sudo service elasticsearch start|stop|restart|status 
+sudo /etc/init.d/elasticsearch start|stop|restart|status 
 
 # To tail the journal:
 sudo journalctl -f
