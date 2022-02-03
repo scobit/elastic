@@ -3,8 +3,10 @@ vim /etc/elasticsearch/elasticsearch.yml
 
 cluster.name: MyNameOfCluster
 node.name: node-1
-network.host: MyIp
+network.host: MyIp | localhost
 
+
+http.port: 9200
 index.number_of_shards: 5
 index.number_of_repcilas: 0
 discovery.zen.ping.unicast.hosts: ["ip","ip"]
