@@ -1,0 +1,41 @@
+# dowload apache sample logs data
+sudo wget https://logz.io/sample-data
+mv cp sample-data apache.log
+
+# creating pipeline
+vim /etc/logstash/conf.d/apachelog.conf
+
+input {
+        file {
+                path => "/home/dstv/apache.log"
+                start_position => "beginning"
+                sincedb_path => "/dev/null"
+        }
+}
+
+filter {
+        grok {
+                match => { "message" => "%{COMBINEDAPACHELOG}" }
+}
+
+        date {
+                match => [ "timestamp", "dd/MMM/yyyy:HH:mm:ss Z" ]
+}
+
+        geoip {
+                source => "clientip"
+        }
+}
+
+output {
+        elasticsearch {
+                hosts => ["localhost:9200"]
+                index => "petclinic-prd-1"
+        }
+}
+
+
+sudo systemctl start logstash
+
+
+sudo systemctl status logstash
