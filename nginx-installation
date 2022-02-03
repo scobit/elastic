@@ -1,0 +1,6 @@
+kibana работает только на localhost
+для доступа из вне нужен nginx
+
+apt-get install -y  nginx
+
+systemctl enable nginx
