@@ -1,0 +1,17 @@
+logs (data) can be static
+and can be real time
+
+ElasticSearch viz-a-viz RDBMS Putting it in perspective
+
+Elastic Search - RDMBS
+Index - Database
+Type - Table
+Document - Row
+Field - Column
+Mapping - Schema
+Query DSL - SQL
+Get API - select * from
+POST API - update table set
+PUT API - insert into table
+Everything is indexed - index on demand
+Aggregation - select filed, count(*) from table
