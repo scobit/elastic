@@ -1,0 +1,68 @@
+
+The Pre-requisites
+
+# update packages
+apt-get update
+
+# install java (optional)
+sudo apt install default-jre
+apt-get install openjdk-7-jre-headless
+
+
+# Installation for Debian
+# Download and install the public signing key:
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+# install the apt-transport-https package
+sudo apt-get install apt-transport-https
+
+# Save the repository definition to /etc/apt/sources.list.d/elastic-7.x.list
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+
+# update and install
+sudo apt-get update && sudo apt-get install elasticsearch
+
+# Elasticsearch is not started automatically after installation. 
+# How to start and stop Elasticsearch depends on whether your system uses SysV init or systemd (used by newer distributions). 
+# You can tell which is being used by running this command:
+ps -p 1
+
+# Running Elasticsearch with SysV initedit
+sudo update-rc.d elasticsearch defaults 95 10
+
+# Elasticsearch can be started and stopped using the service command:
+sudo -i service elasticsearch start
+sudo -i service elasticsearch stop
+
+# If Elasticsearch fails to start for any reason, it will print the reason for failure to STDOUT. 
+# Log files can be found in /var/log/elasticsearch/.
+
+# Running Elasticsearch with systemdedit
+sudo /bin/systemctl daemon-reload
+sudo /bin/systemctl enable elasticsearch.service
+
+# Elasticsearch can be started and stopped as follows:
+sudo systemctl start elasticsearch.service
+sudo systemctl stop elasticsearch.service
+
+# To tail the journal:
+sudo journalctl -f
+
+# To list journal entries for the elasticsearch service:
+sudo journalctl --unit elasticsearch
+
+# To list journal entries for the elasticsearch service starting from a given time:
+sudo journalctl --unit elasticsearch --since  "2016-10-30 18:17:16"
+
+
+# test that your Elasticsearch node is running by sending an HTTP request to port 9200 on localhost:
+curl -X GET "localhost:9200/?pretty"
+curl -XGET "localhost:9200"
+
+
+# man page
+https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
+
+
+
+
