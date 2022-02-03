@@ -2,15 +2,6 @@ chmod 400 ssh_key
 
 ssh -i host_name_or_ip
 
-wget url
-dpkg -i elasticsearch-2.3.4.deb
-
-# setup as service:
-sudo update-rc.d elasticsearch defaults 95 10
-sudo /etc/init.d/elasticsearch start (stop,restart, status)
-
-
-
 
 sense for chrome extension
 
@@ -18,15 +9,6 @@ sense for chrome extension
 
 
 licence.info 
-
-
-
-
-
-
-
-
-
 
 
 
