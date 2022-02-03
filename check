@@ -1,0 +1,941 @@
+chmod 400 ssh_key
+
+ssh -i host_name_or_ip
+
+wget url
+dpkg -i elasticsearch-2.3.4.deb
+
+# setup as service:
+sudo update-rc.d elasticsearch defaults 95 10
+sudo /etc/init.d/elasticsearch start (stop,restart, status)
+
+
+
+
+sense for chrome extension
+
+#########################################
+
+
+licence.info 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GET _search
+{
+"query": {
+"match_all": {}
+}
+}
+
+head plugin
+
+sudo /usr/sahre/elasticsearch/bin/plugin install mobz/elasticssearch-head
+
+repeat on oehter nodes
+
+url
+
+ip:9200/_plugin/head
+
+star means master node
+
+
+curl -XPUT localhost:9200/index/type/id
+
+PUT blogs/post/1
+{
+"title": "Blogging is aweso,e lets blog",
+"body": "blog blog blog ...",
+"user": "prashant",
+"date": "29.01.2022"
+}
+
+
+PUT blogs/post/2
+{
+"title": "Blogging is aweso,e lets blog",
+"body": "blog blog blog ...",
+"user": "prashant",
+"date": "29.01.2022"
+}
+
+also you can check result in HEAD plugin
+
+shard - how data devided between multipant nodes
+
+if we want to make auto id, we should use POST
+
+POST blogs/post
+{
+"title": "Blogging is aweso,e lets blog",
+"body": "blog blog blog ...",
+"user": "prashant",
+"date": "29.01.2022"
+}
+
+
+GET blogs/post/1
+
+GET blogs/post/_search
+
+GET blogs/_search
+
+GET _search
+
+GET _search
+{
+"query": {
+"match_all": {}
+}
+}
+
+GET _search
+{
+"query": {
+"match": {
+"user": "Tetra"
+}
+}
+}
+
+GET _search
+{
+"query": {
+"multi_match": {
+"fields": ["user", "body"],
+"query": "something something"
+}
+}
+}
+
+GET _search
+{
+"query": {
+"term": {
+"user": "Tetra"
+}
+}
+}
+
+
+GET _cat/indices
+
+GET _cat/indices?v
+
+GET _cat/master
+
+GET _cat/master?v
+
+
+PUT /blogs/_settings
+{
+"index": {
+"number_of_replicas": 1
+}
+}
+
+
+to add replica create new elasticsearch server
+in elasticsearch config make
+
+cluster.name: MyClusterName
+
+node.name: MyNodeName
+
+network.host: MyIp
+
+discovery.zen.ping.unicast.hosts: ["ip","ip","ip"]
+discovery.zen.ping.multicast.enabled: false
+
+
+curl -s -XPOST localhost:9200/acresses/_bulk --data-binary @actressses.json;
+
+imdb_data_import_elastic on official site
+
+download actresses file
+
+gunzip file.gz
+
+head -n 400
+
+
+GET _search
+{
+"query": {
+"match": {
+"name": {
+"query": "'Gaby' Goff, Mary",
+"operator": "and" | "or"
+}
+}
+}
+{
+
+GET _search
+{
+"query": {
+"match": {
+"name": {
+"query": "'Gaby' Goff, Mary",
+"operator": "or",
+"fuzziness": 1
+}
+}
+}
+{
+
+"fuzziness": can be 0 (default) 1 as 0ne mistake and 2 as 2 mistakes and auto as automatic value regarding to the length of string
+
+
+GET actresses/_mapping
+
+PUT actor/
+{
+"mappings":{
+"actors":{
+"properties":{
+"name": {
+"type": "string"
+},
+"year": {
+"type": "integer"
+}
+}
+}
+}
+}
+
+
+POST actor/actors
+{
+
+"name": "ABC"
+"year": 2021
+}
+
+
+LogStash - And Enterprice Data Collection and Collation tool
+
+
+requires java 1.7 or above
+
+download deb package from
+
+sudo dpkg -i *.deb
+
+
+sudo update-rc.d logstash defaults 95 10
+
+cd /opt/logstash
+
+sudo /etc/init.d/logstash start | stop | status | restart
+
+/bin/logstash -e 'input {stdin{}}output{stdout{}}'
+
+-f means file
+
+use control + d
+
+use control + c
+
+
+--configtest
+
+in logstash config
+# - means comment
+
+input {
+
+input1 {}
+input2 {}
+}
+
+# filter {
+#}
+
+output {
+outpu1 {}
+output2 {}
+}
+
+logstash instance is
+input plugin
+filter plugin
+output plugin
+
+logstash can also use elasticsearch as inpit data
+
+Input plugins:
+
+Input {
+
+elasticsearch {
+hosts => "localhost"
+index => "blogs"
+query => '{"localhost":{match_all""{}}}'
+type => "my-data-eleasticsearch"
+}
+}
+
+
+Inputs {
+
+file {
+path => "/var/log/*"
+exclude => "*.gz"
+sincedb_path => "/dev/null"
+start_position => "begining"
+type => "my-data-csv"
+}
+}
+
+
+Input {
+jdbc {
+# The path to our download jdbc driver
+jdbc_driver_library => "/opt/etc/*bin.jar"
+# The name of the driver class for db
+jdbc_driver_class => "com/mysql.jdbc.Driver"
+# jdbc connection string to our databasae
+jdbc_connecting_string => "jdbc:mysql"//localhost:3306/mydb"
+jdbc_user => "root"
+jdbc_password => "password"
+# our query
+statement => "SELECT * from users"
+}
+
+Input {
+
+s3 {
+bucket => "MyBucket"
+credentials => ["MyKey","MyToken"]
+region_endpoint => "us-east-1"
+codec => "json"
+}
+}
+
+
+Input {
+tcp {
+port => "5000"
+type => "syslog"
+}
+}
+
+Input {
+udp {
+port => "5001"
+type => "netflow"
+}
+}
+
+}
+ 
+filter {
+
+csv {
+
+column => ["column_1","column_2"]
+column => {"column_3" => integer,"column_4" => "boolean"}
+type => "syslog"
+}
+}
+
+Filter-date
+Used for parsing dates and use as LogStash event timestamp in ISO8601 format
+
+filter {
+
+date {
+
+match => ["logdate", "MMM dd HH:mm:ss"]
+target => "logdate_modified"
+}
+}
+
+filter {
+
+drop {
+if[loglevel] == "debug"{
+drop{}
+}
+}
+}
+
+
+ filter {
+      range {
+        ranges => [ "message", 0, 10, "tag:short",
+                    "message", 11, 100, "tag:medium",
+                    "message", 101, 1000, "tag:long",
+                    "message", 1001, 1e1000, "drop",
+                    "duration", 0, 100, "field:latency:fast",
+                    "duration", 101, 200, "field:latency:normal",
+                    "duration", 201, 1000, "field:latency:slow",
+                    "duration", 1001, 1e1000, "field:latency:outlier",
+                    "requests", 0, 10, "tag:too_few_%{host}_requests" ]
+      }
+    }
+
+
+
+GROK filter
+
+syntax for grok pattern is %{SYNTAX:SEMANTIC}
+
+Custom patterns can be added
+
+ input {
+      file {
+        path => "/var/log/http.log"
+      }
+    }
+    filter {
+      grok {
+        match => { "message" => "%{IP:client} %{WORD:method} %{URIPATHPARAM:request} %{NUMBER:bytes} %{NUMBER:duration}" }
+
+
+
+    (?<field_name>the pattern here)
+
+(?<queue_id>[0-9A-F]{10,11})
+
+
+
+   filter {
+      grok {
+        patterns_dir => ["./patterns"]
+        match => { "message" => "%{SYSLOGBASE} %{POSTFIX_QUEUEID:queue_id}: %{GREEDYDATA:syslog_message}" }
+      }
+    }
+
+
+
+
+filter mutate
+
+
+filter sleep
+
+
+
+filter translate
+
+output csv
+
+output file
+
+output stdout
+
+output elasticsearch
+
+output email
+
+output s3
+
+output tcp
+
+output udp
+
+cd /opt/logstash/bin
+vim sample_1.conf
+input {
+
+stdin {}
+}
+
+output {
+stdout{codec => rubedebug}
+}
+
+
+
+./logstash -f sample_1.conf --configtest
+
+./logstash -f sample_1.conf
+
+
+input {
+
+stdin {}
+}
+
+filter {
+grok {
+match => ["message", "%{WORD:firstname}" %{WORD:lastname} %{NUMBER: age}"]
+}
+}
+
+output {
+stdout{codec => rubedebug}
+
+csv {
+fields => ["firstname", "lastname", "age"]
+path => "/opt/logstash/bin/demo.csv"
+}
+
+file {
+path => "/opt/file.txt"
+codec => "rubydebug"
+
+}
+
+elasticsearch {
+
+hosts => "localhost"
+index => "demo_plugins"
+document_type => "demo1"
+}
+}
+
+
+
+
+
+by default used json codec
+
+
+filter {
+grok {
+match => ["message", "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%POSINT:syslog_pid}])?: %{GREEDYDATA:syslog_message}"
+
+date {
+match => [ "syslog_timestamp", "MMM d HH:mm:ss", "MMM dd HH:mm:ss" ]
+}
+}
+}
+
+
+we can launch queries in head plugin
+
+filter {
+grok {
+match => { "message" => '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \ [%{HTTPDATE:timestamp}\] "%{WORD"verb}" %{DATA:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:responce:int} (?:-|%{NUMBER:bytes:int}) %{QS:referer} %{QS:agent}'
+}
+
+date {
+match => ["timestamp", "dd/MMM/YYYY:HH:mm:ss Z"]
+locae => en
+}
+
+geoip {
+source => "clientip"
+}
+
+useragent {
+source => "agent"
+target => "useragent"
+}
+
+
+
+input {
+tcp {
+port => 5000
+type => tcp_message
+}
+udp {
+port => 5001
+type => udp_message
+}
+}
+filter {
+grok {
+match => [ "message", "%{WORD:firstname} %{WORD"lastname} %{NUMBER"salary}" ]
+}
+}
+
+echo "Alexey Ilin 50000000" | netcat ip port
+
+
+echo "Alexey Ilin 50000000" | netcat -4u ip port
+
+
+sudo -u postgres psql postgres
+
+\d
+
+\c tetrasearch
+
+Open Source (СПО)
+Маршрутизатор pfSense
+Мониторинг Zabbix
+Почтовая система Zimbra
+Виртуальная АТС Asterisk
+
+система мониторинга ориетирована на реагирование на какоие то ситуации, задача максимально быстро и эффективно донести
+информацию до тех, кого это касается и хранить историю об инцидентах
+
+цель - elastic - Обрабротка постфактум, расследование, отличие т.е. в способе донесения информации
+
+теоретически можно использовать elk как zabbix
+
+opensource никогда не был бесплатным!
+или вы платили своим временем или у вас были органзиации, которые вас поддреживали
+
+
+
+kibana
+
+localhost:5601
+
+vim sample.conf
+input {
+
+heartbeat {
+interval => 10
+type => "heartbeat"
+}
+}
+
+output {
+stdout{
+codec => rebydebug
+}
+
+elasticsearch{
+hosts => ["localhost:9200"]
+index => "pulse"
+}
+}
+
+
+kibana - management - index patterns
+type our indexes -> set time filter _ create index pattern
+
+Opensource поисковое решение
+ - полнотекстовый поисковое
+ - геопоиск
+ - ранжирование результатов (скоринг)
+ 
+ Также можно использовать как документ-ориентированное хранилище данных
+ 
+ данные хранятся в  виде JSON
+ 
+ префиксный поиск аббревиатур
+  - по запросу L R R R S должен находить Land Rover Range Sport
+ синонимы
+  - по запросу киа рио должна находиться Kia Rio
+ отладка анализаторов
+ ES как основное хранилище
+ 
+ Автоисправление раскладки
+ лшф кшщ это также Kia Rio
+ 
+ 
+ 
+
+ 
+
+ 
+ REST API
+ 
+ данные должны быть нормализованные, дедублицированные
+ 
+ успех поисковика зависит от того, насколько у вас есть подробная специкация задачи
+ 
+ 
+ 
+ под капотом индекса
+ {
+"field": "one two three"
+ }
+
+вызываем api es index
+es сохраняите оригинал документа а затем содержимое преобразует (токенизирует) и возвращает вектор токенов
+по простому говоря - слов
+
+т.е. станет "one" "two "three"
+
+query("field","two")
+
+запрос также токенизируется и мы получаем "two"
+
+далее идёт сопоставление токенов
+
+при поиске идёт сравнение с мета информацией, а не исходным докуентом
+
+Маппинг:
+
+type: keyword
+ - только полное совпадение
+type: text
+ - Значение анализируется
+type: token_count
+ - полезен, когда имеет значение не содержимое, а длина предобработанной строки т.е. сколько слов получилось после обработки
+ 
+Анализитор определяет, как именно текстовая тсрока будет проиндесирована (токенизирована)
+
+Анализатор включает в себя
+ - character filter
+ 
+может выкинуть занки препинания, заменить скобки. фильтров может быть от 0 и выше
+ 
+ - tokenizer
+ 
+ основной параметр анализатора - разбивает строку на слова, всегда есть хотя бы один
+ 
+ 
+ - token filter
+ 
+ работают с токенами, после токениризации. К примеру изменить регистр, дедуплизировать может быть от о и больше
+ 
+ 
+ Для конкретного поля можно указать 2 различных аназитора
+ 
+ analyzer
+ search_analyzer
+ 
+ если не указан аналайзер, то будет использован дефолт токенайзер
+ он работает хорошо только тогда, когда у вас обычный анг текст ив нем идёт поиск слова
+ 
+ фильтры выполняются в том порядке, в котором определены
+ 
+ для полей с синонимами используется явный search analyzer
+ 
+ работать с индексом лучше через alisas
+ 
+ мапинг в es определяет не только как будут анализироватьяс данные но и как апач люсин (бибилиотека на которой основан es) будет их под капотом хранить,настройки маппинга влияют на оптимизацию стораджа
+ 
+ единственный способ изменить найтроки маппинга - это переиндесировать все данные
+ 
+ отсбюда следует паттерн - обращаемся  к индексу через алиас, создаём новый мапинг и алиас миотрит на новый мапинг
+ 
+ 
+ es как основное хранилище данных впроекте
+ 
+ - шардинг и репликация из коробки
+ 
+ если страдает производительность, как вариант можно уменьшить размер шардов и улучшиться паралельность
+ 
+ - версионирование из коробки
+
+ - при изменении даже одного поля документ переиндексируется целиком
+   что при большом объёме может быть проблемой
+
+
+ - dynamic mapping / dynamic templates
+
+дефолтный аналайзер хорошо работает для узкого кол-ва случаев
+если есть русский текст то нужен тюнинг
+
+ELK - analyze and visualize data
+
+ELK flow
+
+ELK набор open source продуктов для сбора информации из разных источников, анализ собранной информации и представление в удобном и визуализированном формате
+
+Beats
+
+elastisearch - used for stroing and searching collcted data
+- used for collecting and filtering the input data
+is a NOSQL db that was developed based on apache Lucene search engine.
+It can be used to index and store multiple diferent types of documents and data.
+It provides a function to search the data that is stored in real-time as it's being fed.
+
+logstash is a collection agent and is used to collect both heterogenous/non-heterogenous data from various sources.
+It has the capability to screen? breakdown and make string alternations in the data it collects.
+After collecting and filterind data send to es for storage
+
+
+
+kibana - provides a graphical user interface
+GUI to display tha data waht was collected and stored is es.
+features:
+ - discover the data
+ - analyze the data by applying different metrics
+ - visualize the data
+ apply machine learning on the data tj get data anomaly
+ - manage users and roles
+ a console to run es expressions
+ play with time-series data using timeline
+ monitor es stack using monitoring
+ 
+ es supports email notifications
+ 
+
+System perfomance monitoring
+log management
+applications perfomance monitoring
+
+
+application data nalysis
+
+secutiry monitoring and alerting
+
+data visualization
+
+
+
+
+beats - multiple light weight data collectors
+отличие от logstash в том, что биты не обрабатывают полученнкю информацию,
+ 
+ 
+apt-get -y install  openjdk-8-jdk
+
+
+
+
+
+
+
+wget https://*.deb
+dpkg -i *.deb
+
+
+
+
+
+ 
+ 
+
+sudo apt install net-tools
+
+
+
+
+sudo snap install postman
+
+
+
+
+curl -i http://localhost:5601
+
+
+sudo apt-get install ntpdate 
+
+
+sudo ntpdate 1.ro.pool.ntp.org
+
+
+
+Kibana - Discover | management - index patterns | create index patterns - define index name
+
+type new index as index *
+
+CSV logs:
+
+sudo curl -O https://raw.githubusercontent.com/PacktPublishing/Kibana-7-Quick-Start-Guide/master/Chapter02/crimes_2001.csv
+
+
+vim /etc/logstash/conf.d/crimes.conf
+
+input {
+file {
+path => "/home/ubuntu/crimes_2001.csv"
+start_position => beginning
+}
+}
+
+filter {
+csv {
+columns => [
+"ID",
+"Case Number",
+"Date",
+"Block",
+"IUCR",
+"Primary Type",
+"Description",
+"Location Description",
+"Arrest",
+"Domestic",
+"Beat",
+"District",
+"Ward",
+"Community Area",
+"FBI Code",
+"X Coordinate",
+"Y Coordinate",
+"Year",
+"Updated on",
+"latitude",
+"longtitude",
+"location"
+]
+separator => ","
+}
+}
+output {
+elasticsearch {
+action => "index"
+hosts => ["localhost"]
+index => "crimes"
+}
+}
+
+
+
+
+beat более лёгкий и автоматизированный по сравнению с логстэш
+
+
+
+real time logs
+
+sudo filebeat modules list
+
+sudo filebeat modules enable nginx
+
+sudo filebeat modules enable system
+
+ll /etc/filebeat/modules.d/
+
+vim nginx.yml
+access section
+var.paths: [/var/log/nginx/access.log*"]
+
+error section
+var.paths: [/var/log/nginx/error.log*"]
+
+
+vim system.yml
+access section
+var.paths: [/var/log/nginx/syslog.log*"]
+
+auth section
+var.paths: [/var/log/nginx/auth.log*"]
+
+sudo systemctl start filebeat | sudo systemctl restart filebeat
+
+
+sudo systemctl status filebeat
+
+then add inxed in kibana
+
+kibana
+Discover - > Visalize - create new visualization - Area - choice index
+
+choose y-axis metrics - count  - terms - choose field - apply changes - save
+
+
+Crating dashboards
+
+add visualizations
+
+
+
+create sample dashboards
+kibana must be available at this moment
+
+
+sudo filebeat setup -e
+
+
+ss -ntlnp
