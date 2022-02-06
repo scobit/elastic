@@ -1,7 +1,8 @@
 # отключение зависания при перезагрузке
 /etc/systemd/system/logstash.service
-Set parameter:
 TimeoutStopSec=180
+
+sudo /bin/systemctl daemon-reload
 
 # dowload apache sample logs data
 sudo wget https://logz.io/sample-data
