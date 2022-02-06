@@ -27,7 +27,11 @@ var.paths: ["/var/log/nginx/syslog.log*"]
 auth section
 var.paths: ["/var/log/nginx/auth.log*"]
 
-sudo systemctl start filebeat | sudo systemctl restart filebeat
+vim /etc/filebeat/filebeat.yml
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
 
 
-sudo systemctl status filebeat
+
+sudo systemctl start|stop|restart|status filebeat 
