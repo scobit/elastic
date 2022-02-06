@@ -41,7 +41,32 @@ output {
 }
 
 
-sudo systemctl start logstash
+sudo systemctl start|stop|status|restart logstash
+
+in logstash config
+# - means comment
 
 
-sudo systemctl status logstash
+# deprecated folder layout
+cd /opt/logstash
+
+
+# test logstash as utility
+/usr/share/logstash/bin/logstash -e 'input {stdin{}}output{stdout{}}'
+
+# test logstash as utility using config file
+/usr/share/logstash/bin/logstash --path.settings /etc/logstash -f /etc/logstash/conf.d/biometry-balancer.conf --config.test_and_exit
+use control + d
+use control + c
+
+
+# for old logstash
+/opt/logstash/bin/logstash --configtest -f /etc/logstash/conf.d/ 
+
+# Later, it became installed in /usr/share/logstash so try either
+/usr/share/logstash/bin/logstash --configtest -f <the config file/folder>
+
+#if running version 5.1+ use --config.test_and_exit
+/usr/share/logstash/bin/logstash --config.test_and_exit -f <the config file/folder>
+
+
