@@ -2,4 +2,4 @@ vim /etc/kibana/kibana.yml
 
 server.port: 5601
 
-server.host: "localhost"
+server.host: "localhost" | "MylocalIp"
