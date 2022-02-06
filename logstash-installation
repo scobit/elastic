@@ -13,3 +13,6 @@ sudo apt-get update && sudo apt-get install logstash
 # autorun configuration
 sudo /bin/systemctl daemon-reload
 sudo /bin/systemctl enable logstash.service
+
+# daemon control
+sudo /etc/init.d/logstash start | stop | status | restart
