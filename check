@@ -1,14 +1,6 @@
 chmod 400 ssh_key
 
-discovery.seed_hosts : []
-cluster.initial_master_nodes : []
 
-cluster.name: redbull
-node.name: u1
-path.data: /var/lib/elasticsearch
-path.logs: /var/log/elasticsearch
-network.host: 0.0.0.0
-http.port: 9200
 
 
 
@@ -35,9 +27,7 @@ bootstrap check
 
 https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
 
-/etc/systemd/system/logstash.service
-Set parameter:
-TimeoutStopSec=180
+
 
 sense for chrome extension
 
@@ -141,9 +131,7 @@ GET _search
 }
 
 
-GET _cat/indices
 
-GET _cat/indices?v
 
 GET _cat/master
 
@@ -237,35 +225,10 @@ POST actor/actors
 }
 
 
-LogStash - And Enterprice Data Collection and Collation tool
 
 
-requires java 1.7 or above
-
-download deb package from
-
-sudo dpkg -i *.deb
 
 
-sudo update-rc.d logstash defaults 95 10
-
-cd /opt/logstash
-
-sudo /etc/init.d/logstash start | stop | status | restart
-
-/bin/logstash -e 'input {stdin{}}output{stdout{}}'
-
--f means file
-
-use control + d
-
-use control + c
-
-
---configtest
-
-in logstash config
-# - means comment
 
 input {
 
@@ -281,14 +244,7 @@ outpu1 {}
 output2 {}
 }
 
-logstash instance is
-input plugin
-filter plugin
-output plugin
 
-logstash can also use elasticsearch as inpit data
-
-Input plugins:
 
 Input {
 
@@ -821,33 +777,8 @@ index => "crimes"
 }
 
 
-sudo filebeat modules list
-
-sudo filebeat modules enable nginx
-
-sudo filebeat modules enable system
-
-ll /etc/filebeat/modules.d/
-
-vim nginx.yml
-access section
-var.paths: [/var/log/nginx/access.log*"]
-
-error section
-var.paths: [/var/log/nginx/error.log*"]
 
 
-vim system.yml
-access section
-var.paths: [/var/log/nginx/syslog.log*"]
-
-auth section
-var.paths: [/var/log/nginx/auth.log*"]
-
-sudo systemctl start filebeat | sudo systemctl restart filebeat
-
-
-sudo systemctl status filebeat
 
 then add inxed in kibana
 
