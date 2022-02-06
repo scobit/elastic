@@ -4,6 +4,7 @@ ssh -i host_name_or_ip
 
 discovery.type: single-node
 
+https://sbcode.net/grafana/elasticsearch-cluster/
 
 node.data : true
 network.host : 0.0.0.0
