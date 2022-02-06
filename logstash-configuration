@@ -69,4 +69,8 @@ use control + c
 #if running version 5.1+ use --config.test_and_exit
 /usr/share/logstash/bin/logstash --config.test_and_exit -f <the config file/folder>
 
+# open logstash out 
+vim /etc/logstash/logstash.yml
+api.http.host: MyLocalIp
+
 
