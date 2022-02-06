@@ -1,0 +1,5 @@
+# check current indexes 
+curl -X GET "localhost:9200/_cat/indices"
+
+# check current indexes verbose
+curl -X GET "localhost:9200/_cat/indices?v"
