@@ -14,18 +14,18 @@ ll /etc/filebeat/modules.d/ | egrep -v "*disabled"
 # configuration nginx module
 vim /etc/filebeat/modules.d/nginx.yml
 
-var.paths: [/var/log/nginx/access.log*"]
+var.paths: ["/var/log/nginx/access.log*"]
 
 error section
-var.paths: [/var/log/nginx/error.log*"]
+var.paths: ["/var/log/nginx/error.log*"]
 
 
 vim system.yml
 access section
-var.paths: [/var/log/nginx/syslog.log*"]
+var.paths: ["/var/log/nginx/syslog.log*"]
 
 auth section
-var.paths: [/var/log/nginx/auth.log*"]
+var.paths: ["/var/log/nginx/auth.log*"]
 
 sudo systemctl start filebeat | sudo systemctl restart filebeat
 
