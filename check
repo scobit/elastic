@@ -1,5 +1,17 @@
 chmod 400 ssh_key
 
+discovery.seed_hosts : []
+cluster.initial_master_nodes : []
+
+cluster.name: redbull
+node.name: u1
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+network.host: 0.0.0.0
+http.port: 9200
+
+
+
 ssh -i host_name_or_ip
 
 discovery.type: single-node
