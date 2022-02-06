@@ -2,6 +2,29 @@ chmod 400 ssh_key
 
 ssh -i host_name_or_ip
 
+discovery.type: single-node
+
+
+node.data : true
+network.host : 0.0.0.0
+discovery.seed_hosts : []
+cluster.initial_master_nodes : []
+
+
+
+
+cluster.initial_master_nodes: ["n0", "n1", "n2"]
+discovery.seed_hosts: ["n0", "n1", "n2"]
+
+
+
+bootstrap check
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+
+/etc/systemd/system/logstash.service
+Set parameter:
+TimeoutStopSec=180
 
 sense for chrome extension
 
