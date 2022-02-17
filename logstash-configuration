@@ -1,5 +1,5 @@
 # отключение зависания при перезагрузке
-/etc/systemd/system/logstash.service
+vim /etc/systemd/system/logstash.service
 TimeoutStopSec=180
 
 sudo /bin/systemctl daemon-reload
