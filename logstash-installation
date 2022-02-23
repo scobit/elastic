@@ -16,3 +16,14 @@ sudo /bin/systemctl enable logstash.service
 
 # daemon control
 sudo /etc/init.d/logstash start | stop | status | restart
+
+# this directory should be rwx and owner logstash
+chown -R logstash.logstash /usr/share/logstash
+chmod 777 /usr/share/logstash/data
+
+# adding logstash to PATH
+vim /etc/environment
+#add at the end
+/usr/share/logstash/bin
+# reload env
+source /etc/environment
