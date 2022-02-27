@@ -1,0 +1,2 @@
+# service logs
+/var/log/logstash/logstash-plain.log
