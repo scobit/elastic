@@ -1,0 +1,15 @@
+Для его работы используется база данных из файла /usr/share/logstash/vendor/bundle/jruby/2.5.0/gems/logstash-filter-geoip-6.0.3-java/vendor/GeoLite2-City.mmdb. 
+Она будет установлена вместе с logstash. Впоследствии вы скорее всего захотите ее обновлять. 
+Раньше она была доступна по прямой ссылке, но с 30-го декабря 2019 года правила изменились. 
+База по-прежнему доступна бесплатно, но для загрузки нужна регистрация на сайте сервиса. 
+Регистрируемся и качаем отсюда - https://dev.maxmind.com/geoip/geoip2/geolite2/#Download_Access. 
+Передаем на сервер, распаковываем и копируем в /etc/logstash файл GeoLite2-City.mmdb. 
+Теперь нам нужно в настройках модуля geoip указать путь к файлу с базой. 
+Добавляем в /etc/logstash/conf.d/filter.conf:
+
+geoip {
+ database => "/etc/logstash/GeoLite2-City.mmdb"
+ source => "remote_ip"
+ target => "geoip"
+ add_tag => [ "nginx-geoip" ]
+}
