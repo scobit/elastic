@@ -3,3 +3,7 @@ server.port: 5601
 
 # указываем какой интерфейс прослушивать для подключений, по умолчанию разрешён только locahost
 server.host: "0.0.0.0"
+
+# указываем публичный URL Для пользователей. Для исключения уведомления в GUI 
+# server.publicBaseUrl is missing and should be configured when running in a production environment. Some features may not behave correctly.
+server.publicBaseUrl: "http://10.20.1.23:5601/"
