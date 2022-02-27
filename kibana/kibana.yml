@@ -9,3 +9,8 @@ server.host: "0.0.0.0" | "192.168.0.1"
 # указываем публичный URL Для пользователей. Для исключения уведомления в GUI 
 # server.publicBaseUrl is missing and should be configured when running in a production environment. Some features may not behave correctly.
 server.publicBaseUrl: "http://10.20.1.23:5601/"
+
+# включение авторизации в elasticsearch
+xpack.security.enabled: true
+elasticsearch.username: "kibana_system"
+elasticsearch.password: "JArsJZj10YC8LlPlQr4u"
