@@ -1,0 +1,23 @@
+# generate passwords for autentification
+/usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto
+
+Changed password for user apm_system
+PASSWORD apm_system = DD4s3pxvpB7Bd4s86EQg
+
+Changed password for user kibana_system
+PASSWORD kibana_system = GqyvJ8CAcFAO6SAJ5WfO
+
+Changed password for user kibana
+PASSWORD kibana = GqyvJ8CAcFAO6SAJ5WfO
+
+Changed password for user logstash_system
+PASSWORD logstash_system = mUK1PoZbrYelr8WXfXeb
+
+Changed password for user beats_system
+PASSWORD beats_system = wLuoJuExOAx97j9Z7QAK
+
+Changed password for user remote_monitoring_user
+PASSWORD remote_monitoring_user = oFR2irpa0OYNgyhjOuDp
+
+Changed password for user elastic
+PASSWORD elastic = vQ7kSr6SJ5Xni0FnWUko
