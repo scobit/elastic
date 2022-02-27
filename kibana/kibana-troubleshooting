@@ -1,0 +1,5 @@
+# kibana logs
+/var/log/kibana/kibana.log
+
+# logs for service in debian
+/var/log/syslog
