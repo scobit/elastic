@@ -2,20 +2,20 @@
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
 # You may need to install the apt-transport-https package on Debian before proceeding:
-sudo apt-get install -y apt-transport-https
+apt-get install -y apt-transport-https
 
 # Save the repository definition to /etc/apt/sources.list.d/elastic-7.x.list:
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 
 # Run sudo apt-get update and the repository is ready for use. You can install it with:
-sudo apt-get update && sudo apt-get install logstash
+apt-get update && sudo apt-get install logstash
 
 # autorun configuration
-sudo /bin/systemctl daemon-reload
-sudo /bin/systemctl enable logstash.service
+/bin/systemctl daemon-reload
+/bin/systemctl enable logstash.service
 
 # daemon control
-sudo /etc/init.d/logstash start | stop | status | restart
+/etc/init.d/logstash start | stop | status | restart
 
 # this directory should be rwx and owner logstash
 chown -R logstash.logstash /usr/share/logstash
