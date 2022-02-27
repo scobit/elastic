@@ -4,7 +4,7 @@ vim /etc/kibana/kibana.yml
 server.port: 5601
 
 # указываем какой интерфейс прослушивать для подключений, по умолчанию разрешён только locahost
-server.host: "0.0.0.0"
+server.host: "0.0.0.0" | "192.168.0.1"
 
 # указываем публичный URL Для пользователей. Для исключения уведомления в GUI 
 # server.publicBaseUrl is missing and should be configured when running in a production environment. Some features may not behave correctly.
