@@ -62,7 +62,7 @@ sudo journalctl --unit elasticsearch --since  "2016-10-30 18:17:16"
 # test that your Elasticsearch node is running by sending an HTTP request to port 9200 on localhost:
 curl -X GET "localhost:9200/?pretty"
 curl -XGET "localhost:9200"
-
+curl "localhost:9200"
 
 # man page
 https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
