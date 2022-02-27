@@ -6,3 +6,7 @@ network.host: 0.0.0.0
 
 # указываем, что хосты кластера следует искать только локально
 discovery.seed_hosts: ["127.0.0.1"]
+
+# включение аутентификации при доступе
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
