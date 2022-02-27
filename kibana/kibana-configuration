@@ -1,5 +1,1 @@
-vim /etc/kibana/kibana.yml
 
-server.port: 5601
-
-server.host: "localhost" | "MylocalIp"
