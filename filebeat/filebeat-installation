@@ -7,5 +7,5 @@ or
 apt install filebeat
 
 # autorun configuration
-sudo /bin/systemctl daemon-reload
-sudo /bin/systemctl enable filebeat.service
+/bin/systemctl daemon-reload
+/bin/systemctl enable filebeat.service
