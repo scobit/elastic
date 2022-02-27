@@ -1,2 +1,5 @@
 # grok pattern online test
 https://grokdebug.herokuapp.com/
+
+# just run 
+logstash -e 'input { stdin { } } output { stdout {} }'
