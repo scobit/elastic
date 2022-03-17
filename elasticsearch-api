@@ -3,3 +3,6 @@ curl -X GET "localhost:9200/_cat/indices"
 
 # check current indexes verbose
 curl -X GET "localhost:9200/_cat/indices?v"
+
+# check connection via TLS encryptiopn and authentification
+curl --cacert http_ca.crt -u elastic https://localhost:9200
