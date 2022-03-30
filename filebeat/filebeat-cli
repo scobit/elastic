@@ -1,0 +1,2 @@
+# check version
+/usr/share/filebeat/bin/filebeat version
