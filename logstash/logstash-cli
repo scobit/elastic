@@ -1,0 +1,2 @@
+# check version
+/opt/logstash/bin/logstash --version
