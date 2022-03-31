@@ -1,0 +1,16 @@
+1 # Создать space и выбрать необходимые features
+ - Analytics:
+   - Discover
+   - Dashboard
+ - Management:
+   - Data view management
+   
+2 # Перейти в Space и добавить необходимые data view, после удалить из пункта 1 права на Data view management
+
+3 # Создать роль
+ - в поле Indices выбрать data view из 2 пункта и Privilleges: read / view_index_metadata 
+ - в поле Kibana добавить Space из пункта 1
+ 
+4 # Создать пользователя и добавить ему роль из пункта 3
+
+5 # Проверить работу
