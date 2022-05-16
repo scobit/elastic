@@ -1,2 +1,15 @@
 # check version
 /usr/share/filebeat/bin/filebeat version
+
+# check default config
+filebeat test config
+
+# check specific config 
+filebeat test config -c /path/to_config
+
+# check default output availability
+filebeat test output
+
+# check specific output availability
+filebeat test output -c /path/to_config
+
