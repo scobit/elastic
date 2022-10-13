@@ -1,0 +1,5 @@
+# Logstash configuration examples
+https://www.elastic.co/guide/en/logstash/current/config-examples.html#config-examples
+
+# Access event data and fields
+https://www.elastic.co/guide/en/logstash/current/event-dependent-configuration.html
