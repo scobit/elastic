@@ -1,1 +1,7 @@
+# Configure the console output
+# https://www.elastic.co/guide/en/beats/filebeat/current/console-output.html
+
+output.console:
+  pretty: true
+
 
