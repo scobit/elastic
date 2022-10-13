@@ -1,0 +1,15 @@
+- type: log
+  enabled: true
+  paths:
+    - /home/ubuntu/.pm2/*-error-*log
+  fields:
+    level: error
+    event.dataset: dataset1                   <--- add this
+  fields_under_root: true                     <--- add this
+- type: log
+  enabled: true
+  fields:
+    event.dataset: dataset2                   <--- add this
+  fields_under_root: true                     <--- add this
+  paths:
+    - /home/ubuntu/.pm2/logs/cdr-ftp-out*log
