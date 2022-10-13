@@ -3,3 +3,6 @@ https://www.elastic.co/guide/en/logstash/current/config-examples.html#config-exa
 
 # Access event data and fields
 https://www.elastic.co/guide/en/logstash/current/event-dependent-configuration.html
+
+# Running logstash from the command line
+https://www.elastic.co/guide/en/logstash/current/running-logstash-command-line.html
